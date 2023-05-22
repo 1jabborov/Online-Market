@@ -69,7 +69,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CSRF_TRUSTED_ORIGINS = ['https://*.mrit.uz','https://*.127.0.0.1']
 CSRF_COOKIE_SECURE=False
 
-ROOT_URLCONF = 'core.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
