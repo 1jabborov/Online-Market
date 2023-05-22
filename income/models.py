@@ -5,10 +5,10 @@ from django.db import models
 
 class Income(models.Model):
     INCOME_STATUS = (
-        ("created"),
-        ("accepted"),
-        ("completed"),
-        ("canceled")
+        ("created", "созданный"),
+        ("accepted", "потверждённый"),
+        ("completed", "завершённый"),
+        ("canceled", "отклонённый")
     )
     provider = models.ForeignKey('provider.Provider', verbose_name="Provider", on_delete=models.PROTECT)
     warehouse = models.ForeignKey("warehouse.Warehouse", verbose_name="Base", on_delete=models.PROTECT, null=True)

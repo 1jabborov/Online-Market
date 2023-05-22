@@ -56,9 +56,9 @@ class MyUserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     USER_TYPE = (
-        ('director'),
-        ('admin'),
-        ('seller')
+        ('director', "директор"),
+        ('admin', "админ"),
+        ('seller', "продовец")
     )
     first_name = models.CharField(verbose_name='Name', max_length=255, blank=True)
     last_name = models.CharField(verbose_name='Surname', max_length=255, blank=True)

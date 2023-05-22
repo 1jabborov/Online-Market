@@ -5,10 +5,10 @@ from django.db import models
 
 class Order(models.Model):
     ORDER_STATUS = (
-        ("created"),
-        ("accepted"),
-        ("completed"),
-        ("canceled"),
+        ("created", "созданный"),
+        ("accepted", "потверждённый"),
+        ("completed", "завершённый"),
+        ("canceled", "отклонённый"),
     )
 
     client = models.ForeignKey("client.Client", verbose_name="Client", on_delete=models.PROTECT)

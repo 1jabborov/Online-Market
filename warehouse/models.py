@@ -32,10 +32,10 @@ class WarehouseProduct(models.Model):
 
 class Movement(models.Model):
     MOVEMENT_STATUS = (
-        ("created"),
-        ("accepted"),
-        ("completed"),
-        ("canceled"),
+        ("created", "созданный"),
+        ("accepted", "потверждённый"),
+        ("completed", "завершённый"),
+        ("canceled", "отклонённый"),
     )
     from_warehouse = models.ForeignKey(Warehouse, on_delete=models.PROTECT, related_name="from_warehouse", verbose_name="From warehouse")
     to_warehouse = models.ForeignKey(Warehouse, on_delete=models.PROTECT, related_name="to_warehouse", verbose_name="To warehouse")

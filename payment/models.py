@@ -20,20 +20,20 @@ class Outlay(models.Model):
 
 class PaymentTransaction(models.Model):
     PAYMENT_MEYHOD = (
-        ('cash'),
-        ('card'),
-        ('bank'),
+        ("cash", "наличные"),
+        ("card", "карта"),
+        ("bank", "банк")
     )
     PAYMENT_TYPE = (
-        ('income'),
-        ('order'),
-        ('client'),
-        ('provider'),
-        ('outlay'),
+        ("income", "доход"),
+        ("order", "заказ"),
+        ("client", "клиент"),
+        ("provider", "провайдер"),
+        ("outlay", "расход")
     )
     TRANSACTION_TYPE = (
-        ('income'),
-        ('outcome')
+        ('income', "доход"),
+        ('outcome', "расход")
     )
     payment_method = models.CharField(verbose_name="Payment method", max_length=255, choices=PAYMENT_MEYHOD)
     payment_type = models.CharField(verbose_name="Payment type", max_length=255, choices=PAYMENT_TYPE)
