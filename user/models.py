@@ -73,7 +73,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(verbose_name='Active', default=True, )
     birthday = models.DateField(verbose_name="Birthday", null=True, blank=True)
     phone = models.CharField(verbose_name='Phone number', max_length=255, null=True, blank=False, validators=[phone_validator,])
-    user_type = models.CharField(verbose_name='User type', max_length=255, choices="USER_TYPE", default='seller')
+    user_type = models.CharField(verbose_name='User type', max_length=255, choices=USER_TYPE, default='seller')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
