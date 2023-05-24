@@ -14,38 +14,45 @@ from .emails import send_otp_via_email
 # Create your views here.
 
 
-class RegisterAPI(APIView):
+class UserViewSet(ModelViewSet):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated, ]
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    http_method_names = ['get', 'post', 'put', 'patch', 'head', 'option']
 
-    def post(self, request):
-        try:
-            data = request.data
-            serializer = UserSerializer(data=data)
+    @action(detail=False, methods=['post'], permission_classes=[])
+    def register(self, request, pk=None):
+        def post(self, request):
+            try:
+                data = request.data
+                serializer = UserSerializer(data=data)
 
-            if serializer.is_valid():
-                print("ha")
-                serializer.save()
-                send_otp_via_email(serializer.data['email'])
+                if serializer.is_valid():
+                    print("Ok")
+                    serializer.save()
+                    send_otp_via_email(serializer.data['email'])
+                    return Response({
+                        'status': 200,
+                        'message': 'registration successfully check email',
+                        'data': serializer.data,
+                    })
+
                 return Response({
-                    'status': 200,
-                    'message': 'registration successfully check email',
-                    'data': serializer.data,
+                    'status': 400,
+                    'message': 'something went wrong',
+                    'data': serializer.errors,
                 })
+            except Exception as e:
+                return Response({
+                    'status': 400,
+                    'message': 'something went wrong',
+                    'data': serializer.errors,
+                })
+            
 
-            return Response({
-                'status': 400,
-                'message': 'something went wrong',
-                'data': serializer.errors,
-            })
-        except Exception as e:
-            return Response({
-                'status': 400,
-                'message': 'something went wrong',
-                'data': serializer.errors,
-            })
-
-
-class VerifyOTP(APIView):
-    def post(self, request):
+    @action(detail=False, methods=['post'])
+    def verify(self, request, pk=None):
         try:
             data = request.data
             serializer = VerifyAccountSerializer(data=data)
@@ -82,15 +89,8 @@ class VerifyOTP(APIView):
 
         except Exception as e:
             print(e)
-
-
-class UserViewSet(ModelViewSet):
-    authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated, ]
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    http_method_names = ['get', 'post', 'put', 'patch', 'head', 'option']
-
+    
+    
     @action(detail=True, methods=['post'])
     def set_password(self, request, pk=None):
         user = self.get_object()
@@ -102,6 +102,7 @@ class UserViewSet(ModelViewSet):
         else:
             return Response(serializer.errors,
                             status=status.HTTP_400_BAD_REQUEST)
+
 
     @action(detail=False, methods=['post'], permission_classes=[])
     def login(self, request, pk=None):
