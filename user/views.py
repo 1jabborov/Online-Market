@@ -1,17 +1,12 @@
-from django.shortcuts import render
 from rest_framework import status
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.views import APIView
-from .serializers import UserSerializer, RegisterUserSerializer
 from user.models import User
-from user.serializers import UserSerializer, PasswordSerializer, CheckUserSerializer, VerifyAccountSerializer
+from user.serializers import UserSerializer, PasswordSerializer, VerifyAccountSerializer
 from .emails import send_otp_via_email
-
-# Create your views here.
 
 
 class UserViewSet(ModelViewSet):
@@ -23,35 +18,33 @@ class UserViewSet(ModelViewSet):
 
     @action(detail=False, methods=['post'], permission_classes=[])
     def register(self, request, pk=None):
-        def post(self, request):
-            try:
-                data = request.data
-                serializer = UserSerializer(data=data)
+        try:
+            data = request.data
+            serializer = UserSerializer(data=data)
 
-                if serializer.is_valid():
-                    print("Ok")
-                    serializer.save()
-                    send_otp_via_email(serializer.data['email'])
-                    return Response({
-                        'status': 200,
-                        'message': 'registration successfully check email',
-                        'data': serializer.data,
-                    })
-
+            if serializer.is_valid():
+                print("ha")
+                serializer.save()
+                send_otp_via_email(serializer.data['email'])
                 return Response({
-                    'status': 400,
-                    'message': 'something went wrong',
-                    'data': serializer.errors,
+                    'status': 200,
+                    'message': 'registration successfully check email',
+                    'data': serializer.data,
                 })
-            except Exception as e:
-                return Response({
-                    'status': 400,
-                    'message': 'something went wrong',
-                    'data': serializer.errors,
-                })
-            
 
-    @action(detail=False, methods=['post'])
+            return Response({
+                'status': 400,
+                'message': 'something went wrong',
+                'data': serializer.errors,
+            })
+        except Exception as e:
+            return Response({
+                'status': 400,
+                'message': 'something went wrong',
+                'data': serializer.errors,
+            })
+
+    @action(detail=False, methods=['post'], permission_classes=[])
     def verify(self, request, pk=None):
         try:
             data = request.data
@@ -89,8 +82,7 @@ class UserViewSet(ModelViewSet):
 
         except Exception as e:
             print(e)
-    
-    
+
     @action(detail=True, methods=['post'])
     def set_password(self, request, pk=None):
         user = self.get_object()
@@ -102,7 +94,6 @@ class UserViewSet(ModelViewSet):
         else:
             return Response(serializer.errors,
                             status=status.HTTP_400_BAD_REQUEST)
-
 
     @action(detail=False, methods=['post'], permission_classes=[])
     def login(self, request, pk=None):

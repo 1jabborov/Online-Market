@@ -1,11 +1,10 @@
-from django.db import models
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
+from django.db import models
 from django.dispatch import receiver
 from django_resized import ResizedImageField
-from user.validators import phone_validator
 
-# Create your models here.
+from user.validators import phone_validator
 
 
 class MyUserManager(BaseUserManager):
@@ -56,14 +55,15 @@ class MyUserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     USER_TYPE = (
-        ('director', "директор"),
-        ('admin', "админ"),
-        ('seller', "продовец")
+        ('super_admin', 'Super Admin'),
+        ('admin', 'Admin'),
+        ('seller', 'Seller'),
+        ('client', 'Client')
     )
-    first_name = models.CharField(verbose_name='Name', max_length=255, blank=True)
-    last_name = models.CharField(verbose_name='Surname', max_length=255, blank=True)
-    avatar = ResizedImageField(verbose_name='Photo', size=[400, 400], crop=['middle', 'center'], null=True, blank=True, upload_to='user_avatars/')
-    email = models.EmailField(verbose_name='Email', unique=True)
+    first_name = models.CharField(verbose_name='Ism', max_length=255, blank=True)
+    last_name = models.CharField(verbose_name='Familiya', max_length=255, blank=True)
+    avatar = ResizedImageField(verbose_name='Rasim', size=[400, 400], crop=['middle', 'center'], null=True, blank=True, upload_to='user_avatars/')
+    email = models.EmailField(verbose_name='Pochta', unique=True)
     otp = models.CharField(max_length=4, null=True, blank=True)
     forget_password_token = models.CharField(max_length=200, null=True, blank=True)
     last_login_time = models.DateTimeField(null=True, blank=True)
@@ -72,8 +72,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(verbose_name='Staff status', default=False, )
     is_active = models.BooleanField(verbose_name='Active', default=True, )
     birthday = models.DateField(verbose_name="Birthday", null=True, blank=True)
-    phone = models.CharField(verbose_name='Phone number', max_length=255, null=True, blank=False, validators=[phone_validator,])
-    user_type = models.CharField(verbose_name='User type', max_length=255, choices=USER_TYPE, default='seller')
+    user_type = models.CharField(verbose_name='User type', max_length=255, choices=USER_TYPE, default='client')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
