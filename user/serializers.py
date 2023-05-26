@@ -7,6 +7,7 @@ from django.contrib.auth.hashers import make_password
 from .models import User
 from rest_framework.validators import UniqueValidator
 
+# Enter your serializers here.
 
 def password_validator(value):
     if len(value) < 8 and value.is_numeric():
@@ -63,4 +64,3 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class VerifyAccountSerializer(serializers.Serializer):
     email = serializers.EmailField()
     otp = serializers.CharField()
-    

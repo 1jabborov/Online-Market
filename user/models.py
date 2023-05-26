@@ -3,8 +3,9 @@ from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 from django.dispatch import receiver
 from django_resized import ResizedImageField
-
 from user.validators import phone_validator
+
+# Enter your models here.
 
 
 class MyUserManager(BaseUserManager):

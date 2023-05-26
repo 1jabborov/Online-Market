@@ -8,6 +8,8 @@ from user.models import User
 from user.serializers import UserSerializer, PasswordSerializer, VerifyAccountSerializer
 from .emails import send_otp_via_email
 
+# Enter your views here.
+
 
 class UserViewSet(ModelViewSet):
     authentication_classes = [BasicAuthentication]
