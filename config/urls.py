@@ -33,7 +33,6 @@ from provider.urls import router as provider_router
 from user.urls import router as user_router
 from warehouse.urls import router as warehouse_router
 from payment.urls import router as payment_router
-# from user.views import VerifyOTP
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 router = DefaultRouter()
@@ -52,7 +51,7 @@ schema_view = get_schema_view(
       default_version='v1',
       description="Online Market discretion",
       terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="1jabborovv@gamil.com"),
+      contact=openapi.Contact(email="1jabborovv@gmail.com"),
       license=openapi.License(name="Azizbek Jabborov license"),
    ),
    public=True,

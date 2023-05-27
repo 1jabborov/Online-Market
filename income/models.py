@@ -5,13 +5,12 @@ from django.db import models
 
 class Income(models.Model):
     INCOME_STATUS = (
-        ("created", "созданный"),
-        ("accepted", "потверждённый"),
-        ("completed", "завершённый"),
-        ("canceled", "отклонённый")
+        ("created", "Created"),
+        ("accepted", "Accepted"),
+        ("completed", "Complated"),
+        ("canceled", "Canceled")
     )
     provider = models.ForeignKey('provider.Provider', verbose_name="Provider", on_delete=models.PROTECT)
-    warehouse = models.ForeignKey("warehouse.Warehouse", verbose_name="Base", on_delete=models.PROTECT, null=True)
     created_at = models.DateTimeField(verbose_name="Created date", auto_now_add=True)
     status = models.CharField(verbose_name="Status", max_length=255, choices=INCOME_STATUS, default="created")
     total = models.DecimalField(verbose_name="Price", max_digits=17, decimal_places=2, default=0)

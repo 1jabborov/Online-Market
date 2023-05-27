@@ -3,7 +3,7 @@ from product.models import Product
 from warehouse.models import WarehouseProduct
 from .models import Order, OrderItem
 
-# Enter your serializers here.
+# Enter your seralizers here.
 
 
 class OrderChildProductSerializer(serializers.ModelSerializer):
@@ -18,7 +18,7 @@ class ChildWarehouseProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WarehouseProduct
-        fields = "warehouse", "product", "count", "total", "self_price", "product_obj",
+        fields = "product", "count", "total", "self_price", "product_obj",
 
 
 class ChildOrderItemSerializer(serializers.ModelSerializer):

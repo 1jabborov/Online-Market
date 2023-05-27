@@ -5,7 +5,7 @@ from uuid import uuid4
 
 
 class Country(models.Model):
-    name = models.CharField(max_length=264, verbose_name='Nomi')
+    name = models.CharField(max_length=264, verbose_name='Name')
 
     class Meta:
         verbose_name = 'Country'
