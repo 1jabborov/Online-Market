@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     'drf_yasg',
-    'client',
     'income',
     'order',
     'payment',

@@ -23,7 +23,6 @@ from drf_yasg import openapi
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
-from client.urls import router as client_router
 from django.conf import settings
 from config.router import DefaultRouter
 from income.urls import router as income_router
@@ -36,7 +35,6 @@ from payment.urls import router as payment_router
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 router = DefaultRouter()
-router.extend(client_router)
 router.extend(income_router)
 router.extend(order_router)
 router.extend(provider_router)

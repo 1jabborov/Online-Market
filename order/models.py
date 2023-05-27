@@ -11,9 +11,9 @@ class Order(models.Model):
         ("canceled", 'Canceled'),
     )
 
-    client = models.ForeignKey("client.Client", verbose_name="Client", on_delete=models.PROTECT)
+    client = models.ForeignKey("user.User", verbose_name="Client", on_delete=models.PROTECT)
     created_at = models.DateTimeField(verbose_name="Created date", auto_now_add=True)
-    status = models.CharField(verbose_name="Prodcut status", max_length=255, choices=ORDER_STATUS)
+    status = models.CharField(verbose_name="Prodcut status", max_length=255, choices=ORDER_STATUS, default='created')
     total = models.DecimalField(verbose_name="Price", max_digits=17, decimal_places=2, null=True)
 
     def __str__(self):
@@ -35,5 +35,5 @@ class OrderItem(models.Model):
         return self.warehouse_product.product.name
 
     class Meta:
-        verbose_name = "Order unit"
-        verbose_name_plural = "Order units"
+        verbose_name = "Order item"
+        verbose_name_plural = "Order items"

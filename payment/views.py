@@ -4,7 +4,7 @@ from rest_framework import status
 from provider.models import Provider
 from rest_framework.viewsets import ModelViewSet
 from order.models import Order
-from client.models import Client
+from user.models import User
 from income.models import Income
 from .models import OutlayCategory, Outlay, PaymentTransaction
 from .serializers import OutlayCategorySerializer, OutlaySerializer, PaymentTransactionSerializer
@@ -52,7 +52,7 @@ class PaymentTransactionViewSet(ModelViewSet):
             client = order.client
             client.balance += amount
         elif client_obj:
-            client = Client.objects.get(id=client_obj)
+            client = User.objects.get(id=client_obj)
             client.balance += amount
             client.save()
         return response

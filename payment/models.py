@@ -43,7 +43,7 @@ class PaymentTransaction(models.Model):
     comment = models.CharField(verbose_name="Comment", max_length=400)
     income = models.ForeignKey('income.Income', verbose_name="Product income", on_delete=models.PROTECT, null=True, blank=True)
     order = models.ForeignKey('order.Order', verbose_name="Order", on_delete=models.PROTECT, null=True, blank=True)
-    client = models.ForeignKey('client.Client', verbose_name="Client", on_delete=models.PROTECT, null=True, blank=True)
+    client = models.ForeignKey('user.User', verbose_name="Client", on_delete=models.PROTECT, null=True, blank=True)
     provider = models.ForeignKey('provider.Provider', verbose_name="Provider", on_delete=models.PROTECT, null=True, blank=True)
     outlay = models.ForeignKey('Outlay', verbose_name="Outlay name", on_delete=models.PROTECT, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created date")
