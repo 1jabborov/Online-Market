@@ -20,20 +20,20 @@ class Outlay(models.Model):
 
 class PaymentTransaction(models.Model):
     PAYMENT_MEYHOD = (
-        ("cash", "наличные"),
-        ("card", "карта"),
-        ("bank", "банк")
+        ("cash", "Cash"),
+        ("card", "Card"),
+        ("bank", "Bank")
     )
     PAYMENT_TYPE = (
-        ("income", "доход"),
-        ("order", "заказ"),
-        ("client", "клиент"),
-        ("provider", "провайдер"),
-        ("outlay", "расход")
+        ("income", "Income"),
+        ("order", "Order"),
+        ("client", "Client"),
+        ("provider", "Provider"),
+        ("outlay", "Outlay")
     )
     TRANSACTION_TYPE = (
-        ('income', "доход"),
-        ('outcome', "расход")
+        ('income', "Income"),
+        ('outcome', "Outcome")
     )
     payment_method = models.CharField(verbose_name="Payment method", max_length=255, choices=PAYMENT_MEYHOD)
     payment_type = models.CharField(verbose_name="Payment type", max_length=255, choices=PAYMENT_TYPE)
@@ -43,7 +43,7 @@ class PaymentTransaction(models.Model):
     comment = models.CharField(verbose_name="Comment", max_length=400)
     income = models.ForeignKey('income.Income', verbose_name="Product income", on_delete=models.PROTECT, null=True, blank=True)
     order = models.ForeignKey('order.Order', verbose_name="Order", on_delete=models.PROTECT, null=True, blank=True)
-    client = models.ForeignKey('user.User', verbose_name="Client", on_delete=models.PROTECT, null=True, blank=True)
+    client = models.ForeignKey('user.User', verbose_name="Client", on_delete=models.SET_NULL, null=True, blank=True)
     provider = models.ForeignKey('provider.Provider', verbose_name="Provider", on_delete=models.PROTECT, null=True, blank=True)
     outlay = models.ForeignKey('Outlay', verbose_name="Outlay name", on_delete=models.PROTECT, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created date")
