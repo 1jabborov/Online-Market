@@ -3,7 +3,7 @@ from product.models import Product
 from warehouse.models import WarehouseProduct
 from .models import Order, OrderItem
 
-# Enter your seralizers here.
+# Create your seralizers here.
 
 
 class OrderChildProductSerializer(serializers.ModelSerializer):

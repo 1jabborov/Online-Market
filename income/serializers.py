@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Income, IncomeItem
 
-# Enter your serializers here.
+# Create your serializers here.
 
 
 class IncomeSerializer(serializers.ModelSerializer):

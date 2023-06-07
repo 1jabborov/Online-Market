@@ -1,6 +1,6 @@
 from django.db import models
 
-# Enter your models here.
+# Create your models here.
 
 
 class Order(models.Model):

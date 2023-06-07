@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 from .models import OutlayCategory, Outlay, PaymentTransaction
 
-# Enter your serializers here.
+# Create your serializers here.
 
 
 class OutlayCategorySerializer(ModelSerializer):

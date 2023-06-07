@@ -7,7 +7,7 @@ from django.contrib.auth.hashers import make_password
 from .models import User
 from rest_framework.validators import UniqueValidator
 
-# Enter your serializers here.
+# Create your serializers here.
 
 def password_validator(value):
     if len(value) < 8 and value.is_numeric():
@@ -57,7 +57,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        fields = 'first_name', 'last_name', 'avatar', 'email', 'username', 'is_active', 'birthday', \
+        fields = 'name', 'surname', 'avatar', 'email', 'username', 'is_active', 'birthday', \
             'user_type',
 
 

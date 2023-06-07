@@ -9,6 +9,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django_filters import rest_framework as filters
 
+# Create your views here.
+
 
 class StatusFilter(filters.FilterSet):
     status = filters.CharFilter(lookup_expr='icontains')

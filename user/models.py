@@ -5,7 +5,7 @@ from django.dispatch import receiver
 from django_resized import ResizedImageField
 from user.validators import phone_validator
 
-# Enter your models here.
+# Create your models here.
 
 
 class MyUserManager(BaseUserManager):
@@ -61,10 +61,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         ('seller', 'Seller'),
         ('client', 'Client')
     )
-    first_name = models.CharField(verbose_name='Ism', max_length=255, blank=True)
-    last_name = models.CharField(verbose_name='Familiya', max_length=255, blank=True)
-    avatar = ResizedImageField(verbose_name='Rasim', size=[400, 400], crop=['middle', 'center'], null=True, blank=True, upload_to='user_avatars/')
-    email = models.EmailField(verbose_name='Pochta', unique=True)
+    name = models.CharField(verbose_name='Name', max_length=255, blank=True)
+    surname = models.CharField(verbose_name='Surname', max_length=255, blank=True)
+    avatar = ResizedImageField(verbose_name='Photo', size=[400, 400], crop=['middle', 'center'], null=True, blank=True, upload_to='user_avatars/')
+    email = models.EmailField(verbose_name='Email', unique=True)
     otp = models.CharField(max_length=4, null=True, blank=True)
     forget_password_token = models.CharField(max_length=200, null=True, blank=True)
     last_login_time = models.DateTimeField(null=True, blank=True)
@@ -83,10 +83,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
 
     def get_full_name(self):
-        return f'{self.first_name} {self.last_name}'
+        return f'{self.name} {self.surname}'
 
     def get_short_name(self):
-        return self.first_name
+        return self.name
 
     class Meta:
         verbose_name = 'User'

@@ -8,7 +8,7 @@ from user.models import User
 from user.serializers import UserSerializer, PasswordSerializer, VerifyAccountSerializer
 from .emails import send_otp_via_email
 
-# Enter your views here.
+# Create your views here.
 
 
 class UserViewSet(ModelViewSet):
@@ -25,7 +25,7 @@ class UserViewSet(ModelViewSet):
             serializer = UserSerializer(data=data)
 
             if serializer.is_valid():
-                print("ha")
+                print("Ok")
                 serializer.save()
                 send_otp_via_email(serializer.data['email'])
                 return Response({

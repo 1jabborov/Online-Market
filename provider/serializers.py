@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Provider
 
-# Enter your serializers here.
+# Create your serializers here.
 
 
 class ProviderSerializer(serializers.ModelSerializer):

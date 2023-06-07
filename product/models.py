@@ -1,7 +1,7 @@
 from django.db import models
 from uuid import uuid4
 
-# Enter your models here.
+# Create your models here.
 
 
 class Country(models.Model):

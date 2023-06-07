@@ -5,7 +5,7 @@ from .models import Country, Manufactory, Category, Product, Character, ProductM
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
 
-# Enter your serializers here.
+# Create your serializers here.
 
 
 class CountrySerializers(ModelSerializer):
