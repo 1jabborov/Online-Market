@@ -47,7 +47,7 @@ schema_view = get_schema_view(
    openapi.Info(
       title="ONLINE MARKET API",
       default_version='v1',
-      description="Online Market discretion",
+      description="Online Market discription",
       terms_of_service="https://www.google.com/policies/terms/",
       contact=openapi.Contact(email="1jabborovv@gmail.com"),
       license=openapi.License(name="Azizbek Jabborov license"),
